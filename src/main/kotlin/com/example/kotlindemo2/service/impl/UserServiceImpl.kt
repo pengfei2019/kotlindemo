@@ -20,4 +20,8 @@ class UserServiceImpl : IUserService {
     override fun insertUser(userInfo: UserInfo): Int {
         return userMapper.insertUser(userInfo)
     }
+
+    override fun getAllUserList(userInfo: UserInfo): List<UserInfo> {
+        return userMapper.getAllUserInfo(userInfo)
+    }
 }

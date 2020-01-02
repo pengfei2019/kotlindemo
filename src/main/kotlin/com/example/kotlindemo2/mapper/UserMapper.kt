@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Select
 import org.apache.ibatis.annotations.SelectProvider
+import java.lang.StringBuilder
+
 
 @Mapper
 interface UserMapper {
@@ -20,6 +22,14 @@ interface UserMapper {
         """)
     fun insertUser(userInfo: UserInfo): Int
 
-//    @SelectProvider
+   @SelectProvider(type = UserConditionProvider::class, method = "selectAllUserInfoSQL")
+   fun getAllUserInfo(userInfo: UserInfo):List<UserInfo>
 
+    class UserConditionProvider {
+        fun selectAllUserInfoSQL(userInfo: UserInfo):String {
+            var sql = StringBuilder()
+            sql.append(" select USER_ID, USER_NAME, PASSWORD, DELETED from user where 1=1 ")
+            return sql.toString()
+        }
+    }
 }

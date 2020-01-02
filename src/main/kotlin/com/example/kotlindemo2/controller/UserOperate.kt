@@ -55,16 +55,13 @@ class UserOperate {
     }
 
     @GetMapping("/getUserList")
-    fun getUserList(@RequestBody userPara : UserPara,
+    fun getUserList(@RequestBody userInfo : UserInfo,
                     @RequestParam("userId", required = false) id: String): String {
 
-        var userInfo = UserInfo(userid=null,
-                username=null,
-                password=null)
+        var strBody = userInfo
 
-        var strBody = userPara
-
-        var userList1 = userService.queryUserList(userInfo)
+//        var userList1 = userService.queryUserList(userInfo)
+        var userList1 = userService.getAllUserList(userInfo)
         var strList = Gson().toJson(userList1)
         var rtn = cipherTest(strList,"12345678")
         return rtn

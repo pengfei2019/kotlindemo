@@ -6,4 +6,6 @@ interface IUserService {
     fun queryUserList(userInfo: UserInfo): List<UserInfo>
 
     fun insertUser(userInfo: UserInfo): Int
+
+    fun getAllUserList(userInfo: UserInfo): List<UserInfo>
 }
