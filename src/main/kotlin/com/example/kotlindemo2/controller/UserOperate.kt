@@ -22,6 +22,8 @@ import javax.crypto.spec.SecretKeySpec
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import com.google.gson.Gson
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.body
 
@@ -35,6 +37,8 @@ class UserOperate {
 //    @Autowired
 //    lateinit var response: HttpServletResponse
 
+    val log: Logger = LoggerFactory.getLogger(UserOperate::class.java)
+
     @Autowired
     lateinit var userService: IUserService
 
@@ -46,7 +50,7 @@ class UserOperate {
 //        response.setHeader("Apikey","defg")
         var rtn = cipherTest("中国字","12345678")
         var strDec = decrypt(rtn,"12345678")
-        println(String(strDec))
+        log.info(String(strDec))
         return rtn
     }
 
